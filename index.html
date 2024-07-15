@@ -3,21 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Maxi Clicker</title>
+    <title>Cookie Clicker</title>
     <link rel="stylesheet" href="styles.css">
-    <br>
-    <button onclick="window.location.href='https://nictrixx23-2.github.io/games-hub';">Back to Game Hub</button>
 </head>
 <body>
     <div id="game">
-        <h1>Lil Mausi Clicker</h1>
+        <h1>Cookie Clicker</h1>
         <div id="cookie-container">
             <img src="cookie.png" id="cookie" alt="Cookie">
         </div>
-        <p>Maxies: <span id="cookie-count">0</span></p>
-        <button id="buy-autoclicker">Buy Automaxi (Cost: 10 Maxies)</button>
-        <br>
-        <button id="buy-grandma">Buy Grandmaxi (Cost: 20 Maxies)</button>
+        <p>Cookies: <span id="cookie-count">0</span></p>
+        <button id="buy-autoclicker">Buy Automaxi (Cost: 10 Cookies)</button>
+        <button id="buy-grandma">Buy Grandmaxi (Cost: 20 Cookies)</button>
         <p>Automaxis: <span id="autoclicker-count">0</span></p>
         <p>Grandmaxis: <span id="grandma-count">0</span></p>
     </div>
@@ -27,14 +24,14 @@
             let cookieCount = 0;
             let autoclickerCount = 0;
             let grandmaCount = 0;
+            let autoclickerCost = 10;
+            let grandmaCost = 20;
             const cookie = document.getElementById('cookie');
             const cookieCountDisplay = document.getElementById('cookie-count');
             const buyAutoclickerButton = document.getElementById('buy-autoclicker');
             const buyGrandmaButton = document.getElementById('buy-grandma');
             const autoclickerCountDisplay = document.getElementById('autoclicker-count');
             const grandmaCountDisplay = document.getElementById('grandma-count');
-            const autoclickerCost = 10;
-            const grandmaCost = 20;
 
             cookie.addEventListener('click', function() {
                 cookieCount++;
@@ -45,6 +42,7 @@
                 if (cookieCount >= autoclickerCost) {
                     cookieCount -= autoclickerCost;
                     autoclickerCount++;
+                    autoclickerCost = Math.ceil(autoclickerCost * 1.2); // Increase cost by 20%
                     updateDisplay();
                 }
             });
@@ -53,6 +51,7 @@
                 if (cookieCount >= grandmaCost) {
                     cookieCount -= grandmaCost;
                     grandmaCount++;
+                    grandmaCost = Math.ceil(grandmaCost * 1.2); // Increase cost by 20%
                     updateDisplay();
                 }
             });
@@ -61,6 +60,8 @@
                 cookieCountDisplay.textContent = cookieCount;
                 autoclickerCountDisplay.textContent = autoclickerCount;
                 grandmaCountDisplay.textContent = grandmaCount;
+                buyAutoclickerButton.textContent = `Buy Automaxi (Cost: ${autoclickerCost} Cookies)`;
+                buyGrandmaButton.textContent = `Buy Grandmaxi (Cost: ${grandmaCost} Cookies)`;
             }
 
             setInterval(function() {
