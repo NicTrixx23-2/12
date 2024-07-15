@@ -3,32 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Maxi Clicker</title>
+    <title>Cookie Clicker</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div id="game">
-        <h1>Lil Mausi Clicker</h1>
+        <h1>Cookie Clicker</h1>
         <div id="cookie-container">
             <img src="cookie.png" id="cookie" alt="Cookie">
         </div>
-        <p>Maxies: <span id="cookie-count">0</span></p>
+        <p>Cookies: <span id="cookie-count">0</span></p>
         <button id="buy-autoclicker">Buy Autoclicker (Cost: 10 Cookies)</button>
+        <button id="buy-grandma">Buy Grandma (Cost: 20 Cookies)</button>
         <p>Autoclickers: <span id="autoclicker-count">0</span></p>
-        <br>
-        <button id="buy-grandmaxi">Buy Grandmaxi (Cost: 10 Cookies)</button>
-        <p>Grandmaxi: <span id="grandmaxi-cound">0</span></p>
+        <p>Grandmas: <span id="grandma-count">0</span></p>
     </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             let cookieCount = 0;
             let autoclickerCount = 0;
+            let grandmaCount = 0;
             const cookie = document.getElementById('cookie');
             const cookieCountDisplay = document.getElementById('cookie-count');
             const buyAutoclickerButton = document.getElementById('buy-autoclicker');
+            const buyGrandmaButton = document.getElementById('buy-grandma');
             const autoclickerCountDisplay = document.getElementById('autoclicker-count');
+            const grandmaCountDisplay = document.getElementById('grandma-count');
             const autoclickerCost = 10;
+            const grandmaCost = 20;
 
             cookie.addEventListener('click', function() {
                 cookieCount++;
@@ -43,13 +46,23 @@
                 }
             });
 
+            buyGrandmaButton.addEventListener('click', function() {
+                if (cookieCount >= grandmaCost) {
+                    cookieCount -= grandmaCost;
+                    grandmaCount++;
+                    updateDisplay();
+                }
+            });
+
             function updateDisplay() {
                 cookieCountDisplay.textContent = cookieCount;
                 autoclickerCountDisplay.textContent = autoclickerCount;
+                grandmaCountDisplay.textContent = grandmaCount;
             }
 
             setInterval(function() {
                 cookieCount += autoclickerCount;
+                cookieCount += grandmaCount * 5;
                 updateDisplay();
             }, 1000);
         });
