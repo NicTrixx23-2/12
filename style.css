@@ -30,7 +30,23 @@ body {
     transform: scale(0.9);
 }
 
-#cookie-count {
+#cookie-count, #autoclicker-count {
     font-size: 2em;
     color: #333;
+}
+
+#buy-autoclicker {
+    padding: 10px 20px;
+    font-size: 1em;
+    margin-top: 20px;
+    cursor: pointer;
+    border: none;
+    background-color: #4CAF50;
+    color: white;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+#buy-autoclicker:hover {
+    background-color: #45a049;
 }
