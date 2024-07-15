@@ -30,15 +30,15 @@ body {
     transform: scale(0.9);
 }
 
-#cookie-count, #autoclicker-count {
+#cookie-count, #autoclicker-count, #grandma-count {
     font-size: 2em;
     color: #333;
 }
 
-#buy-autoclicker {
+button {
     padding: 10px 20px;
     font-size: 1em;
-    margin-top: 20px;
+    margin: 10px;
     cursor: pointer;
     border: none;
     background-color: #4CAF50;
@@ -47,6 +47,6 @@ body {
     transition: background-color 0.3s;
 }
 
-#buy-autoclicker:hover {
+button:hover {
     background-color: #45a049;
 }
