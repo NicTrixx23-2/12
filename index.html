@@ -13,18 +13,42 @@
             <img src="cookie.png" id="cookie" alt="Cookie">
         </div>
         <p>Cookies: <span id="cookie-count">0</span></p>
+        <button id="buy-autoclicker">Buy Autoclicker (Cost: 10 Cookies)</button>
+        <p>Autoclickers: <span id="autoclicker-count">0</span></p>
     </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             let cookieCount = 0;
+            let autoclickerCount = 0;
             const cookie = document.getElementById('cookie');
             const cookieCountDisplay = document.getElementById('cookie-count');
+            const buyAutoclickerButton = document.getElementById('buy-autoclicker');
+            const autoclickerCountDisplay = document.getElementById('autoclicker-count');
+            const autoclickerCost = 10;
 
             cookie.addEventListener('click', function() {
                 cookieCount++;
-                cookieCountDisplay.textContent = cookieCount;
+                updateDisplay();
             });
+
+            buyAutoclickerButton.addEventListener('click', function() {
+                if (cookieCount >= autoclickerCost) {
+                    cookieCount -= autoclickerCost;
+                    autoclickerCount++;
+                    updateDisplay();
+                }
+            });
+
+            function updateDisplay() {
+                cookieCountDisplay.textContent = cookieCount;
+                autoclickerCountDisplay.textContent = autoclickerCount;
+            }
+
+            setInterval(function() {
+                cookieCount += autoclickerCount;
+                updateDisplay();
+            }, 1000);
         });
     </script>
 </body>
